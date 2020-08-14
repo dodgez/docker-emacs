@@ -1,0 +1,10 @@
+FROM dodgez/docker-emacs:emacs26
+MAINTAINER zacharysdodge@gmail.com
+
+ENV UNAME="emacser" \
+    UHOME="/home/emacser"
+
+RUN git clone --depth 1 https://github.com/hlissner/doom-emacs $UHOME/.emacs.d \
+    && $UHOME/.emacs.d/bin/doom -y install
+
+CMD ["bash", "-c", "emacs; /bin/bash"]
